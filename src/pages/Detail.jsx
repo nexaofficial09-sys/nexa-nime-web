@@ -24,7 +24,7 @@ export default function Detail() {
         
         if (id.startsWith('local_')) {
             const dbId = id.replace('local_', '');
-            resDetail = await fetch(`http://103.30.195.243:5000/api/custom_anime/${dbId}`).then(r => r.json());
+            resDetail = await fetch(`https://api.nexalabs.my.id/api/custom_anime/${dbId}`).then(r => r.json());
             if (resDetail.success && resDetail.data) {
                 // Map to match external API format
                 resDetail.data = { movie: resDetail.data };
@@ -42,14 +42,14 @@ export default function Detail() {
             }
         } else {
             [resDetail, resEpisode] = await Promise.all([
-                fetch(`http://103.30.195.243:5000/api/detail/${id}`).then(r => r.json()),
-                fetch(`http://103.30.195.243:5000/api/episode/${id}`).then(r => r.json())
+                fetch(`https://api.nexalabs.my.id/api/detail/${id}`).then(r => r.json()),
+                fetch(`https://api.nexalabs.my.id/api/episode/${id}`).then(r => r.json())
             ]);
         }
 
         const [resPopular, resMovies] = await Promise.all([
-          fetch(`http://103.30.195.243:5000/api/popular`).then(r => r.json()),
-          fetch(`http://103.30.195.243:5000/api/movies`).then(r => r.json())
+          fetch(`https://api.nexalabs.my.id/api/popular`).then(r => r.json()),
+          fetch(`https://api.nexalabs.my.id/api/movies`).then(r => r.json())
         ]);
         
         if (resDetail?.data) setData(resDetail.data);

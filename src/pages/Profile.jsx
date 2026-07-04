@@ -14,7 +14,7 @@ export default function Profile() {
     if (user) {
       const fetchHistory = async () => {
         try {
-          const res = await fetch(`http://103.30.195.243:5000/api/history`, { credentials: 'include' });
+          const res = await fetch(`https://api.nexalabs.my.id/api/history`, { credentials: 'include' });
           const data = await res.json();
           if (data.success) {
             setHistory(data.history || data.data || []);
@@ -31,7 +31,7 @@ export default function Profile() {
 
   const handleDeleteHistory = async (anime_id) => {
     try {
-      const res = await fetch(`http://103.30.195.243:5000/api/history/${anime_id}`, { 
+      const res = await fetch(`https://api.nexalabs.my.id/api/history/${anime_id}`, { 
         method: 'DELETE',
         credentials: 'include' 
       });
@@ -47,7 +47,7 @@ export default function Profile() {
   const handleClearAllHistory = async () => {
     if (!window.confirm("Yakin ingin menghapus semua riwayat tontonan?")) return;
     try {
-      const res = await fetch(`http://103.30.195.243:5000/api/history/clear`, { 
+      const res = await fetch(`https://api.nexalabs.my.id/api/history/clear`, { 
         method: 'POST',
         credentials: 'include' 
       });

@@ -19,7 +19,7 @@ export default function HistoryCard({ item, onDelete }) {
 
   const proxyUrl = (url) => {
     if (!url) return '';
-    return `http://103.30.195.243:5000/proxy_image?url=${encodeURIComponent(url)}`;
+    return `https://api.nexalabs.my.id/proxy_image?url=${encodeURIComponent(url)}`;
   };
 
   return (

@@ -26,7 +26,7 @@ export default function ListCategory() {
                 else if (category === 'episodes') endpoint = '/api/episodes';
                 
                 if (endpoint) {
-                    const res = await fetch(`http://103.30.195.243:5000${endpoint}`).then(r => r.json());
+                    const res = await fetch(`https://api.nexalabs.my.id${endpoint}`).then(r => r.json());
                     let list = [];
                     if (res.data?.movie) list = res.data.movie;
                     else if (Array.isArray(res.data)) list = res.data;

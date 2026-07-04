@@ -27,7 +27,7 @@ export default function AuthModal({ isOpen, onClose }) {
     
     try {
       const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
-      const res = await fetch(`http://103.30.195.243:5000${endpoint}`, {
+      const res = await fetch(`https://api.nexalabs.my.id${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password, display_name: isLogin ? undefined : displayName }),

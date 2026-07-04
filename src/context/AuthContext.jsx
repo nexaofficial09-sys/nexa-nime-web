@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchStatus = async () => {
     try {
-      const res = await fetch(`http://103.30.195.243:5000/api/auth/status`, { credentials: 'include' });
+      const res = await fetch(`https://api.nexalabs.my.id/api/auth/status`, { credentials: 'include' });
       const data = await res.json();
       if (data.success) {
         setUser(data.user);
@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchNotifications = async () => {
     try {
-      const res = await fetch(`http://103.30.195.243:5000/api/notifications`, { credentials: 'include' });
+      const res = await fetch(`https://api.nexalabs.my.id/api/notifications`, { credentials: 'include' });
       const data = await res.json();
       if (data.success) {
         let notifs = data.notifications;
@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }) => {
          }
       }
       
-      await fetch(`http://103.30.195.243:5000/api/notifications/read/${id}`, { method: 'POST', credentials: 'include' });
+      await fetch(`https://api.nexalabs.my.id/api/notifications/read/${id}`, { method: 'POST', credentials: 'include' });
       setNotifications(prev => prev.map(n => n.id === id ? { ...n, is_read: true } : n));
       setUnreadCount(prev => Math.max(0, prev - 1));
     } catch (err) {
@@ -74,7 +74,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await fetch(`http://103.30.195.243:5000/api/auth/logout`, { method: 'POST', credentials: 'include' });
+      await fetch(`https://api.nexalabs.my.id/api/auth/logout`, { method: 'POST', credentials: 'include' });
       setUser(null);
       setNotifications([]);
       setUnreadCount(0);

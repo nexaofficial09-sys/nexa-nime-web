@@ -32,7 +32,7 @@ export default function Stream() {
         let resStream;
         if (id.startsWith('local_')) {
             const dbId = id.replace('local_', '');
-            const rawStream = await fetch(`http://103.30.195.243:5000/api/custom_episode/${dbId}`).then(r => r.json());
+            const rawStream = await fetch(`https://api.nexalabs.my.id/api/custom_episode/${dbId}`).then(r => r.json());
             if (rawStream.success && rawStream.data) {
                 resStream = { 
                     data: { 
@@ -46,11 +46,11 @@ export default function Stream() {
                 };
             }
         } else {
-            resStream = await fetch(`http://103.30.195.243:5000/api/stream/${id}`).then(r => r.json());
+            resStream = await fetch(`https://api.nexalabs.my.id/api/stream/${id}`).then(r => r.json());
         }
 
         const [resPopular] = await Promise.all([
-          fetch(`http://103.30.195.243:5000/api/popular`).then(r => r.json())
+          fetch(`https://api.nexalabs.my.id/api/popular`).then(r => r.json())
         ]);
         if (resStream?.data) {
            if (resStream.data.episode?.id_movie) {
@@ -59,7 +59,7 @@ export default function Stream() {
                
                if (movieId.startsWith('local_')) {
                    const animeId = movieId.replace('local_', '');
-                   resDetail = await fetch(`http://103.30.195.243:5000/api/custom_anime/${animeId}`).then(r => r.json());
+                   resDetail = await fetch(`https://api.nexalabs.my.id/api/custom_anime/${animeId}`).then(r => r.json());
                    if (resDetail.success && resDetail.data) {
                        resDetail.data = { movie: resDetail.data };
                        resEp = {
@@ -76,8 +76,8 @@ export default function Stream() {
                    }
                } else {
                    [resEp, resDetail] = await Promise.all([
-                     fetch(`http://103.30.195.243:5000/api/episode/${movieId}`).then(r => r.json()),
-                     fetch(`http://103.30.195.243:5000/api/detail/${movieId}`).then(r => r.json())
+                     fetch(`https://api.nexalabs.my.id/api/episode/${movieId}`).then(r => r.json()),
+                     fetch(`https://api.nexalabs.my.id/api/detail/${movieId}`).then(r => r.json())
                    ]);
                }
                
@@ -96,7 +96,7 @@ export default function Stream() {
                }
                
                if (user) {
-                   fetch(`http://103.30.195.243:5000/api/history/${movieId}`, { credentials: 'include' })
+                   fetch(`https://api.nexalabs.my.id/api/history/${movieId}`, { credentials: 'include' })
                    .then(r => r.json())
                    .then(resHistory => {
                        if (resHistory?.success && (resHistory?.episode_id === id || String(resHistory?.episode) === String(resStream.data.episode.index))) {
@@ -172,7 +172,7 @@ export default function Stream() {
   // Track iframe watch history on load since iframes don't fire onTimeUpdate
   useEffect(() => {
       if (user && data?.episode?.id_movie && animeDetail && currentServer?.type === 'iframe') {
-          fetch(`http://103.30.195.243:5000/api/history`, {
+          fetch(`https://api.nexalabs.my.id/api/history`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               credentials: 'include',
@@ -305,7 +305,7 @@ export default function Stream() {
                                 // Throttle update history setiap 5 detik
                                 if (now - lastUpdateTime.current > 5000) {
                                     lastUpdateTime.current = now;
-                                    fetch(`http://103.30.195.243:5000/api/history`, {
+                                    fetch(`https://api.nexalabs.my.id/api/history`, {
                                         method: 'POST',
                                         headers: { 'Content-Type': 'application/json' },
                                         credentials: 'include',
@@ -324,7 +324,7 @@ export default function Stream() {
                                 if (!user || !episode?.id_movie || !animeDetail) return;
                                 const currentTime = e.target.currentTime;
                                 lastUpdateTime.current = Date.now(); // Reset throttle
-                                fetch(`http://103.30.195.243:5000/api/history`, {
+                                fetch(`https://api.nexalabs.my.id/api/history`, {
                                     method: 'POST',
                                     headers: { 'Content-Type': 'application/json' },
                                     credentials: 'include',

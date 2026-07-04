@@ -54,7 +54,7 @@ export default function AdminDashboard() {
   const fetchUsers = async () => {
     setLoadingUsers(true);
     try {
-      const res = await fetch(`http://103.30.195.243:5000/api/admin/users`, { credentials: 'include' });
+      const res = await fetch(`https://api.nexalabs.my.id/api/admin/users`, { credentials: 'include' });
       const data = await res.json();
       if (data.success) setUsers(data.users);
     } catch (err) { console.error(err); }
@@ -64,7 +64,7 @@ export default function AdminDashboard() {
   const fetchAnime = async () => {
     setLoadingAnime(true);
     try {
-      const res = await fetch(`http://103.30.195.243:5000/api/admin/anime`, { credentials: 'include' });
+      const res = await fetch(`https://api.nexalabs.my.id/api/admin/anime`, { credentials: 'include' });
       const data = await res.json();
       if (data.success) setAnimeList(data.anime);
     } catch (err) { console.error(err); }
@@ -74,7 +74,7 @@ export default function AdminDashboard() {
   const handleDeleteUser = async (userId, username) => {
     if (!window.confirm(`Yakin ingin menghapus pengguna ${username}?`)) return;
     try {
-      const res = await fetch(`http://103.30.195.243:5000/api/admin/users/${userId}`, { method: 'DELETE', credentials: 'include' });
+      const res = await fetch(`https://api.nexalabs.my.id/api/admin/users/${userId}`, { method: 'DELETE', credentials: 'include' });
       const data = await res.json();
       if (data.success) {
         fetchUsers();
@@ -91,7 +91,7 @@ export default function AdminDashboard() {
   const fetchActiveNotifs = async () => {
     setLoadingNotifs(true);
     try {
-      const res = await fetch(`http://103.30.195.243:5000/api/admin/notifications`, { credentials: 'include' });
+      const res = await fetch(`https://api.nexalabs.my.id/api/admin/notifications`, { credentials: 'include' });
       const data = await res.json();
       if (data.success) setActiveNotifs(data.notifications);
     } catch (err) { console.error(err); }
@@ -101,7 +101,7 @@ export default function AdminDashboard() {
   const handleDeleteNotif = async (notifId) => {
     if (!window.confirm(`Yakin ingin menghapus notifikasi ini?`)) return;
     try {
-      const res = await fetch(`http://103.30.195.243:5000/api/admin/notification/${notifId}`, { method: 'DELETE', credentials: 'include' });
+      const res = await fetch(`https://api.nexalabs.my.id/api/admin/notification/${notifId}`, { method: 'DELETE', credentials: 'include' });
       const data = await res.json();
       if (data.success) {
         fetchActiveNotifs();
@@ -124,7 +124,7 @@ export default function AdminDashboard() {
     }
     setSendingNotif(true);
     try {
-      const res = await fetch(`http://103.30.195.243:5000/api/admin/notification`, {
+      const res = await fetch(`https://api.nexalabs.my.id/api/admin/notification`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(notifForm),
@@ -192,7 +192,7 @@ export default function AdminDashboard() {
     const translateSynopsis = async () => {
         if (!animeForm.description) return;
         try {
-            const res = await fetch(`http://103.30.195.243:5000/api/translate`, {
+            const res = await fetch(`https://api.nexalabs.my.id/api/translate`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ text: animeForm.description })
@@ -214,8 +214,8 @@ export default function AdminDashboard() {
     try {
       const isEdit = editingAnimeId !== null;
       const url = isEdit 
-        ? `http://103.30.195.243:5000/api/admin/anime/${editingAnimeId}` 
-        : `http://103.30.195.243:5000/api/admin/anime`;
+        ? `https://api.nexalabs.my.id/api/admin/anime/${editingAnimeId}` 
+        : `https://api.nexalabs.my.id/api/admin/anime`;
       const res = await fetch(url, {
         method: isEdit ? 'PUT' : 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -267,7 +267,7 @@ export default function AdminDashboard() {
         onConfirm: async () => {
             try {
               const dbId = id.replace('local_', '');
-              const res = await fetch(`http://103.30.195.243:5000/api/admin/anime/${dbId}`, { method: 'DELETE', credentials: 'include' });
+              const res = await fetch(`https://api.nexalabs.my.id/api/admin/anime/${dbId}`, { method: 'DELETE', credentials: 'include' });
               const data = await res.json();
               if (data.success) fetchAnime();
             } catch (err) { console.error(err); }
@@ -282,7 +282,7 @@ export default function AdminDashboard() {
 
   const fetchEpisodes = async (id) => {
     try {
-      const res = await fetch(`http://103.30.195.243:5000/api/admin/anime/${id}/episodes`, { credentials: 'include' });
+      const res = await fetch(`https://api.nexalabs.my.id/api/admin/anime/${id}/episodes`, { credentials: 'include' });
       const data = await res.json();
       if (data.success) setAnimeEpisodes(data.episodes);
     } catch (err) { console.error(err); }
@@ -322,7 +322,7 @@ export default function AdminDashboard() {
     const finalUrl = JSON.stringify(resolutions);
 
     try {
-      const res = await fetch(`http://103.30.195.243:5000/api/admin/anime/${dbId}/episodes`, {
+      const res = await fetch(`https://api.nexalabs.my.id/api/admin/anime/${dbId}/episodes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ episode_number: epForm.episode_number, video_url: finalUrl }),
@@ -346,7 +346,7 @@ export default function AdminDashboard() {
         message: "Hapus episode ini?",
         onConfirm: async () => {
             try {
-              const res = await fetch(`http://103.30.195.243:5000/api/admin/episode/${epId}`, { method: 'DELETE', credentials: 'include' });
+              const res = await fetch(`https://api.nexalabs.my.id/api/admin/episode/${epId}`, { method: 'DELETE', credentials: 'include' });
               if ((await res.json()).success) {
                 fetchEpisodes(selectedAnime.id.replace('local_', ''));
                 fetchAnime();
