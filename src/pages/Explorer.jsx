@@ -83,7 +83,7 @@ export default function Explorer() {
                 studio: filters.studio
             });
 
-            const res = await fetch(`http://127.0.0.1:5000/api/explore_anime?${queryParams.toString()}`).then(r => r.json());
+            const res = await fetch(`https://api.nexalabs.my.id/api/explore_anime?${queryParams.toString()}`).then(r => r.json());
             
             let fetchedList = [];
             if (res.data?.movie) {

@@ -14,7 +14,7 @@ export default function SearchPage() {
     const fetchSearch = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`http://127.0.0.1:5000/api/search?keyword=${encodeURIComponent(keyword)}`).then(r => r.json());
+        const res = await fetch(`https://api.nexalabs.my.id/api/search?keyword=${encodeURIComponent(keyword)}`).then(r => r.json());
         if (res.data?.movie) {
           setResults(res.data.movie);
         } else {

@@ -29,15 +29,15 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const [resNew, resMovies, resPopular, resHot, resNewTitle, resSchedule, resSeries, resWaiting, resCustom] = await Promise.all([
-          fetch('http://127.0.0.1:5000/api/episodes').then(r => r.json()),
-          fetch('http://127.0.0.1:5000/api/movies').then(r => r.json()),
-          fetch('http://127.0.0.1:5000/api/popular').then(r => r.json()),
-          fetch('http://127.0.0.1:5000/api/hot').then(r => r.json()),
-          fetch('http://127.0.0.1:5000/api/new').then(r => r.json()),
-          fetch(`http://127.0.0.1:5000/api/schedule?day=${todayStr}`).then(r => r.json()),
-          fetch('http://127.0.0.1:5000/api/series').then(r => r.json()),
-          fetch('http://127.0.0.1:5000/api/waiting').then(r => r.json()),
-          fetch('http://127.0.0.1:5000/api/custom_anime').then(r => r.json()).catch(() => ({}))
+          fetch('https://api.nexalabs.my.id/api/episodes').then(r => r.json()),
+          fetch('https://api.nexalabs.my.id/api/movies').then(r => r.json()),
+          fetch('https://api.nexalabs.my.id/api/popular').then(r => r.json()),
+          fetch('https://api.nexalabs.my.id/api/hot').then(r => r.json()),
+          fetch('https://api.nexalabs.my.id/api/new').then(r => r.json()),
+          fetch(`https://api.nexalabs.my.id/api/schedule?day=${todayStr}`).then(r => r.json()),
+          fetch('https://api.nexalabs.my.id/api/series').then(r => r.json()),
+          fetch('https://api.nexalabs.my.id/api/waiting').then(r => r.json()),
+          fetch('https://api.nexalabs.my.id/api/custom_anime').then(r => r.json()).catch(() => ({}))
         ]);
         
         let cGroups = {};
@@ -92,7 +92,7 @@ export default function Home() {
     setLoadingSeries(true);
     try {
       const nextPage = seriesPage + 1;
-      const res = await fetch(`http://127.0.0.1:5000/api/series?page=${nextPage}`).then(r => r.json());
+      const res = await fetch(`https://api.nexalabs.my.id/api/series?page=${nextPage}`).then(r => r.json());
       if (res.data?.movie) {
         setSeriesAnime(prev => [...prev, ...res.data.movie]);
         setSeriesPage(nextPage);
@@ -117,7 +117,7 @@ export default function Home() {
         try {
           // Ambil dari halaman acak di endpoint search (semua anime)
           const randomPage = Math.floor(Math.random() * 20) + 1;
-          const res = await fetch(`http://127.0.0.1:5000/api/search?page=${randomPage}`).then(r => r.json());
+          const res = await fetch(`https://api.nexalabs.my.id/api/search?page=${randomPage}`).then(r => r.json());
           if (res.data?.movie) {
              let pool = [...res.data.movie];
              // Acak urutannya (shuffle)

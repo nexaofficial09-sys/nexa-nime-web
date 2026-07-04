@@ -68,7 +68,7 @@ function Layout({ children }) {
       setIsTyping(true);
       setShowDropdown(true);
       try {
-        const response = await fetch(`http://127.0.0.1:5000/api/search?keyword=${encodeURIComponent(keyword)}`);
+        const response = await fetch(`https://api.nexalabs.my.id/api/search?keyword=${encodeURIComponent(keyword)}`);
         if (!response.ok) throw new Error('Failed to fetch');
         const data = await response.json();
         setLiveResults((data.data?.movie || []).slice(0, 4));
@@ -142,7 +142,7 @@ function Layout({ children }) {
                                     className={`flex gap-3 p-3 hover:bg-slate-100 transition-colors ${i !== liveResults.length - 1 ? 'border-b-[2px] border-[#1a202c]' : ''}`}
                                 >
                                     <img 
-                                        src={`http://127.0.0.1:5000/proxy_image?url=${encodeURIComponent(anime.thumbnail || anime.image || anime.image_poster || '')}`} 
+                                        src={`https://api.nexalabs.my.id/proxy_image?url=${encodeURIComponent(anime.thumbnail || anime.image || anime.image_poster || '')}`} 
                                         alt={anime.title} 
                                         className="w-12 h-16 object-cover border-[2px] border-[#1a202c] rounded-sm flex-shrink-0 bg-zinc-200"
                                     />

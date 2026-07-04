@@ -77,7 +77,7 @@ export default function Detail() {
 
   const movie = data.movie;
 
-  const proxyUrl = (url) => url ? `http://127.0.0.1:5000/proxy_image?url=${encodeURIComponent(url)}` : '';
+  const proxyUrl = (url) => url ? `https://api.nexalabs.my.id/proxy_image?url=${encodeURIComponent(url)}` : '';
 
   const sortedEpisodes = [...episodes].sort((a, b) => {
     const aIndex = parseInt(a.index) || 0;

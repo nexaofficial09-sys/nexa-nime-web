@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default function AnimeCard({ anime, isHot }) {
     const proxyUrl = (url) => {
         if (!url) return '';
-        return `http://127.0.0.1:5000/proxy_image?url=${encodeURIComponent(url)}`;
+        return `https://api.nexalabs.my.id/proxy_image?url=${encodeURIComponent(url)}`;
     };
 
     return (

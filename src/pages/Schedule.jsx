@@ -15,7 +15,7 @@ export default function Schedule() {
         const fetchSchedule = async () => {
             setLoading(true);
             try {
-                const res = await fetch(`http://127.0.0.1:5000/api/schedule?day=${selectedDay}`).then(r => r.json());
+                const res = await fetch(`https://api.nexalabs.my.id/api/schedule?day=${selectedDay}`).then(r => r.json());
                 if (res.data?.movie) {
                     setScheduleAnime(res.data.movie);
                 } else if (Array.isArray(res.data)) {

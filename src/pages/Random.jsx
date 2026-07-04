@@ -10,7 +10,7 @@ export default function Random() {
             try {
                 // Mengambil halaman acak dari API pencarian untuk mendapatkan pool anime yang acak
                 const randomPage = Math.floor(Math.random() * 20) + 1;
-                const res = await fetch(`http://127.0.0.1:5000/api/search?page=${randomPage}`).then(r => r.json());
+                const res = await fetch(`https://api.nexalabs.my.id/api/search?page=${randomPage}`).then(r => r.json());
                 
                 if (res.data?.movie && res.data.movie.length > 0) {
                     const pool = res.data.movie;
