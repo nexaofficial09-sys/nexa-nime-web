@@ -1,0 +1,338 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Nunito:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Nunito', sans-serif;
+  --font-handwritten: 'Caveat', cursive;
+}
+
+@layer base {
+  body {
+    background-color: #f8fafc;
+    background-image: linear-gradient(to right, #e2e8f0 1px, transparent 1px),
+                      linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
+    background-size: 32px 32px;
+    color: var(--color-slate-900);
+    font-family: var(--font-sans);
+  }
+}
+
+@layer components {
+  .btn-3d {
+    --btn-bg: #ffffff;
+    --btn-thickness: #1a202c;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+    border: 3px solid #1a202c;
+    vertical-align: middle;
+    text-decoration: none;
+    font-family: inherit;
+    font-weight: 600;
+    color: #1a202c;
+    text-transform: uppercase;
+    background: var(--btn-bg);
+    border-radius: 0.375rem;
+    transform-style: preserve-3d;
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
+  }
+
+  .btn-3d::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--btn-thickness);
+    border-radius: inherit;
+    box-shadow: 0 0 0 3px #1a202c;
+    transform: translate3d(0, 0.4em, -1em);
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+  }
+
+  .btn-3d:hover {
+    transform: translate(0, 0.15em);
+  }
+
+  .btn-3d:hover::before {
+    transform: translate3d(0, 0.25em, -1em);
+  }
+
+  .btn-3d:active {
+    transform: translate(0em, 0.4em);
+  }
+
+  .btn-3d:active::before {
+    transform: translate3d(0, 0, -1em);
+  }
+
+  /* Modifiers */
+  .btn-3d.thickness-cyan {
+    --btn-thickness: #00d4ff;
+  }
+  .btn-3d.thickness-cyan:hover {
+    --btn-thickness: #00b8cc;
+  }
+  
+  .btn-3d.bg-cyan {
+    --btn-bg: #00d4ff;
+    --btn-thickness: #1a202c;
+  }
+  .btn-3d.bg-red {
+    --btn-bg: #e53e3e;
+    --btn-thickness: #1a202c;
+    color: white;
+  }
+  .btn-3d.bg-green {
+    --btn-bg: #25D366;
+    --btn-thickness: #1a202c;
+    color: white;
+  }
+  .btn-3d.bg-teal {
+    --btn-bg: #14b8a6;
+    --btn-thickness: #1a202c;
+    color: white;
+  }
+  .btn-3d.bg-orange {
+    --btn-bg: #fbbf24;
+    --btn-thickness: #1a202c;
+  }
+
+  .btn-cari-3d {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    color: #1a202c;
+    text-transform: uppercase;
+    padding: 0.4em 1.5em;
+    background: #ffffff;
+    border: 2px solid #1a202c;
+    border-radius: 0.4em;
+    transform-style: preserve-3d;
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
+  }
+
+  .btn-cari-3d::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #00d4ff;
+    border-radius: inherit;
+    box-shadow: 0 0 0 2px #1a202c, 0 0.35em 0 0 #1a202c;
+    transform: translate3d(0, 0.35em, -1em);
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+  }
+
+  .btn-cari-3d:hover {
+    background: #f1f5f9;
+    transform: translate(0, 0.15em);
+  }
+
+  .btn-cari-3d:hover::before {
+    box-shadow: 0 0 0 2px #1a202c, 0 0.2em 0 0 #1a202c;
+    transform: translate3d(0, 0.2em, -1em);
+  }
+
+  .btn-cari-3d:active {
+    background: #f1f5f9;
+    transform: translate(0em, 0.35em);
+  }
+
+  .btn-cari-3d:active::before {
+    box-shadow: 0 0 0 2px #1a202c, 0 0 #1a202c;
+    transform: translate3d(0, 0, -1em);
+  }
+
+  .btn-action-3d {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    outline: none;
+    border: 2px solid #1a202c;
+    vertical-align: middle;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    color: white;
+    padding: 0.35em 0.8em;
+    border-radius: 0.375rem;
+    box-shadow: 0 0.25em 0 0 #1a202c;
+    transform: translateY(0);
+    transition: transform 150ms, box-shadow 150ms, filter 150ms;
+  }
+
+  .btn-action-3d:hover {
+    filter: brightness(1.1);
+    transform: translateY(0.1em);
+    box-shadow: 0 0.15em 0 0 #1a202c;
+  }
+
+  .btn-action-3d:active {
+    filter: brightness(1);
+    transform: translateY(0.25em);
+    box-shadow: 0 0 0 0 #1a202c;
+  }
+
+  .color-wa { background: #2ecc71; }
+  .color-saluran { background: #16a085; }
+  .color-saweria { background: #f1c40f; }
+
+  /* Loading Spinner Neo Brutalism */
+  .loadingspinner {
+    --square: 12px;
+    --offset: 16px;
+    --duration: 2.4s;
+    --delay: 0.2s;
+    --timing-function: ease-in-out;
+    --in-duration: 0.4s;
+    --in-delay: 0.1s;
+    --in-timing-function: ease-out;
+    width: calc( 3 * var(--offset) + var(--square));
+    height: calc( 2 * var(--offset) + var(--square));
+    padding: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .loadingspinner div {
+    display: inline-block;
+    background: #00d4ff;
+    border: 1.5px solid #1a202c;
+    box-shadow: 1.5px 1.5px 0 0 #1a202c;
+    border-radius: 3px;
+    width: var(--square);
+    height: var(--square);
+    position: absolute;
+    padding: 0px;
+    margin: 0px;
+    font-size: 6pt;
+    color: black;
+  }
+
+  .loadingspinner #square1 {
+    left: calc( 0 * var(--offset) );
+    top: calc( 0 * var(--offset) );
+    animation: square1 var(--duration) var(--delay) var(--timing-function) infinite,
+                 squarefadein var(--in-duration) calc(1 * var(--in-delay)) var(--in-timing-function) both;
+  }
+
+  .loadingspinner #square2 {
+    left: calc( 0 * var(--offset) );
+    top: calc( 1 * var(--offset) );
+    animation: square2 var(--duration) var(--delay) var(--timing-function) infinite,
+                squarefadein var(--in-duration) calc(1 * var(--in-delay)) var(--in-timing-function) both;
+  }
+
+  .loadingspinner #square3 {
+    left: calc( 1 * var(--offset) );
+    top: calc( 1 * var(--offset) );
+    animation: square3 var(--duration) var(--delay) var(--timing-function) infinite,
+                 squarefadein var(--in-duration) calc(2 * var(--in-delay)) var(--in-timing-function) both;
+  }
+
+  .loadingspinner #square4 {
+    left: calc( 2 * var(--offset) );
+    top: calc( 1 * var(--offset) );
+    animation: square4 var(--duration) var(--delay) var(--timing-function) infinite,
+                 squarefadein var(--in-duration) calc(3 * var(--in-delay)) var(--in-timing-function) both;
+  }
+
+  .loadingspinner #square5 {
+    left: calc( 3 * var(--offset) );
+    top: calc( 1 * var(--offset) );
+    animation: square5 var(--duration) var(--delay) var(--timing-function) infinite,
+                 squarefadein var(--in-duration) calc(4 * var(--in-delay)) var(--in-timing-function) both;
+  }
+
+  @keyframes square1 {
+    0% { left: calc( 0 * var(--offset) ); top: calc( 0 * var(--offset) ); }
+    8.333% { left: calc( 0 * var(--offset) ); top: calc( 1 * var(--offset) ); }
+    100% { left: calc( 0 * var(--offset) ); top: calc( 1 * var(--offset) ); }
+  }
+
+  @keyframes square2 {
+    0% { left: calc( 0 * var(--offset) ); top: calc( 1 * var(--offset) ); }
+    8.333% { left: calc( 0 * var(--offset) ); top: calc( 2 * var(--offset) ); }
+    16.67% { left: calc( 1 * var(--offset) ); top: calc( 2 * var(--offset) ); }
+    25.00% { left: calc( 1 * var(--offset) ); top: calc( 1 * var(--offset) ); }
+    83.33% { left: calc( 1 * var(--offset) ); top: calc( 1 * var(--offset) ); }
+    91.67% { left: calc( 1 * var(--offset) ); top: calc( 0 * var(--offset) ); }
+    100% { left: calc( 0 * var(--offset) ); top: calc( 0 * var(--offset) ); }
+  }
+
+  @keyframes square3 {
+    0%,100% { left: calc( 1 * var(--offset) ); top: calc( 1 * var(--offset) ); }
+    16.67% { left: calc( 1 * var(--offset) ); top: calc( 1 * var(--offset) ); }
+    25.00% { left: calc( 1 * var(--offset) ); top: calc( 0 * var(--offset) ); }
+    33.33% { left: calc( 2 * var(--offset) ); top: calc( 0 * var(--offset) ); }
+    41.67% { left: calc( 2 * var(--offset) ); top: calc( 1 * var(--offset) ); }
+    66.67% { left: calc( 2 * var(--offset) ); top: calc( 1 * var(--offset) ); }
+    75.00% { left: calc( 2 * var(--offset) ); top: calc( 2 * var(--offset) ); }
+    83.33% { left: calc( 1 * var(--offset) ); top: calc( 2 * var(--offset) ); }
+    91.67% { left: calc( 1 * var(--offset) ); top: calc( 1 * var(--offset) ); }
+  }
+
+  @keyframes square4 {
+    0% { left: calc( 2 * var(--offset) ); top: calc( 1 * var(--offset) ); }
+    33.33% { left: calc( 2 * var(--offset) ); top: calc( 1 * var(--offset) ); }
+    41.67% { left: calc( 2 * var(--offset) ); top: calc( 2 * var(--offset) ); }
+    50.00% { left: calc( 3 * var(--offset) ); top: calc( 2 * var(--offset) ); }
+    58.33% { left: calc( 3 * var(--offset) ); top: calc( 1 * var(--offset) ); }
+    100% { left: calc( 3 * var(--offset) ); top: calc( 1 * var(--offset) ); }
+  }
+
+  @keyframes square5 {
+    0% { left: calc( 3 * var(--offset) ); top: calc( 1 * var(--offset) ); }
+    50.00% { left: calc( 3 * var(--offset) ); top: calc( 1 * var(--offset) ); }
+    58.33% { left: calc( 3 * var(--offset) ); top: calc( 0 * var(--offset) ); }
+    66.67% { left: calc( 2 * var(--offset) ); top: calc( 0 * var(--offset) ); }
+    75.00% { left: calc( 2 * var(--offset) ); top: calc( 1 * var(--offset) ); }
+    100% { left: calc( 2 * var(--offset) ); top: calc( 1 * var(--offset) ); }
+  }
+
+  @keyframes squarefadein {
+    0% { transform: scale(0.75); opacity: 0.0; }
+    100% { transform: scale(1.0); opacity: 1.0; }
+  }
+}
+
+/* Custom Scrollbar for Dropdown */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f8fafc;
+  border-left: 2px solid #1a202c;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #00d4ff;
+  border-left: 2px solid #1a202c;
+  border-bottom: 2px solid #1a202c;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #00b8e6;
+}
